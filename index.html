@@ -1,0 +1,274 @@
+<html>
+  <head>
+    <title>Calculator JS</title>
+    <style>
+      html{
+        background-image: url('https://previews.123rf.com/images/slanapotam/slanapotam1803/slanapotam180300020/97190274-mathematics-background-different-numbers-in-random-pattern-colorful-school-pattern-for-children-mult.jpg');
+      }
+      body{
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%); 
+      }
+      #divDisplay{
+      text-align: right;
+      }
+      .firstRow{
+        display:flex;
+        flex-wrap: nowrap;   /* this clears spaces between divs  */
+        /* justify-content: space-around; */
+      }
+      .buttonNum{
+        background-color: lightseagreen;
+        width:80px;
+        height: 80px; 
+        font-size: 50px;
+      }
+      .buttonNum:hover{
+        background-color:lightgreen;
+      }
+      .buttonDivide{
+        background-color: lightseagreen;
+        width:80px;
+        height: 80px; 
+        font-size: 50px;
+      }
+      .buttonDivide:hover{
+        background-color:lightgreen;
+      }
+      .buttonClear{
+        background-color: lightseagreen;
+        width:160px;
+        height: 80px; 
+        font-size: 50px;
+      }
+      .buttonClear:hover{
+        background-color:lightgreen;
+      }
+      .secondRow{
+        display:flex;
+        flex-wrap: nowrap;   /* this clears spaces between divs  */
+        /* justify-content: space-around; */
+      }
+      .buttonMultiply{
+        background-color: lightseagreen;
+        width:80px;
+        height: 80px; 
+        font-size: 50px;
+      }
+      .buttonMultiply:hover{
+        background-color:lightgreen;
+      }
+      .buttonBackspace{
+        background-color: lightseagreen;
+        width:160px;
+        height: 80px; 
+        font-size: 50px;
+      }
+      .buttonBackspace:hover{
+        background-color:lightgreen;
+      }
+      .thirdRow{
+        display:flex;
+        flex-wrap: nowrap;   /* this clears spaces between divs  */
+        /* justify-content: space-around; */
+      }
+      .buttonMinus{
+        background-color: lightseagreen;
+        width:80px;
+        height: 80px; 
+        font-size: 50px;
+      }
+      .buttonMinus:hover{
+        background-color:lightgreen;
+      }
+      .buttonPower{
+        background-color: lightseagreen;
+        width:80px;
+        height: 80px; 
+        font-size: 50px;
+      }
+      .buttonPower:hover{
+        background-color:lightgreen;
+      }
+      .buttonSquare{
+        background-color: lightseagreen;
+        width:80px;
+        height: 80px; 
+        font-size: 50px;
+      }
+      .buttonSquare:hover{
+        background-color:lightgreen;
+      }
+      .fourthRow{
+        display:flex;
+        flex-wrap: nowrap;   /* this clears spaces between divs  */
+        /* justify-content: space-around; */
+      }
+      .buttonPlus{
+        background-color: lightseagreen;
+        width:80px;
+        height: 80px; 
+        font-size: 50px;
+      }
+      .buttonPercent{
+        background-color: lightseagreen;
+        width:80px;
+        height: 80px; 
+        font-size: 50px;
+      }
+      .buttonSum{
+        background-color: lightseagreen;
+        width:80px;
+        height: 80px; 
+        font-size: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class=calc>
+      <div class=display>
+        <input id=divDisplay type=text maxlength="50" style="height:150px; width:480px;font-size:30px;">
+      </div>
+      <div class=firstRow>
+        <input type=button class=buttonNum id=7button value='7'>
+        <input type=button class=buttonNum id=8button value='8'>
+        <input type=button class=buttonNum id=9button value='9'>
+        <input type=button class=buttonDivide id=dividebutton value='/'>
+        <input type=button class=buttonClear id=clearbutton value='Clear'>
+      </div>
+      <div class=secondRow>
+        <input type=button class=buttonNum id=4button value='4'>
+        <input type=button class=buttonNum id=5button value='5'>
+        <input type=button class=buttonNum id=6button value='6'>
+        <input type=button class=buttonMultiply id=multiplybutton value='*'>
+        <input type=button class=buttonBackspace id=backspacebutton value='Back'>
+      </div>
+      <div class=thirdRow>
+          <input type=button class=buttonNum id=1button value='1'>
+          <input type=button class=buttonNum id=2button value='2'>
+          <input type=button class=buttonNum id=3button value='3'>
+          <input type=button class=buttonMinus id=minusbutton value='-'>
+          <input type=button class=buttonPower id=powerbutton value='^'>
+          <input type=button class=buttonSquare id=squarebutton value='sq'>
+      </div>
+      <div class=fourthRow>
+        <input type=button class=buttonNum id=0button value='0' style='width:160px;')>
+        <input type=button class=buttonNum id=pointbutton value='.'>
+        <input type=button class=buttonPlus id=plusbutton value='+'>
+        <input type=button class=buttonPercent id=percentbutton value='%'>
+        <input type=button class=buttonSum id=sumbutton value='='>
+      </div>
+
+    </div>
+
+    <script>
+      function add(a,b){
+        return a+b;
+      }
+      function subtract(a,b){
+        return a-b;
+      }
+      function multiply(a,b){
+        return a*b;
+      }
+      function divide(a,b){
+        if (b===0){
+          return 'Can not divide by zero!';
+        }else{
+          return a/b;
+        }
+      }
+
+      function operate(operator, a, b) {
+        return operator(a, b);
+      }
+
+      const display = document.getElementById("divDisplay");
+        
+      let temp1 = "";
+      let temp2 = "";
+      let val = "";
+      let sign = "";
+      let result;
+
+      function func() { 
+        if (this.value === "Clear") {
+          temp1 = "";
+          temp2 = "";
+          val = "";
+          sign = "";
+          result = "";
+          display.value = "";
+          document.getElementById("dot").disabled = false;
+            }  
+
+        if (this.value === "BackSpace") {
+          val = val.substr(0, val.length - 1);
+          display.value = val;
+        }
+
+        if (this.value === "%") {
+          val /= 100;
+          display.value = val;
+        } 
+
+        if (this.value === "^") {
+          val *= val;
+          display.value = val;
+          }
+
+        if (this.value === "sq") {
+          val = Math.sqrt(val);
+          display.value = val;
+        } 
+
+        if (this.className === "buttonNum") {
+          val += this.value;
+          display.value = val; 
+          if (val.includes(".")) {
+            document.getElementById("pointbutton").disabled = true;
+          }
+          else {
+          document.getElementById("pointbutton").disabled = false;
+          }
+        }                                  
+            
+        if (this.value === "+" || this.value === "-" || this.value === "*" || this.value === "/" || this.value === "=") {                
+          if (temp1 === "") {
+            sign = this.value;
+            temp1 = Number(val);
+            val = "";                    
+          }
+          else {
+            temp2 = Number(val);
+            display.value = "";
+            if (sign === "+") {
+              result = operate(add, temp1, temp2);
+            }
+            if (sign === "-") {
+              result = operate(subtract, temp1, temp2);
+            }
+            if (sign === "*") {
+              result = operate(multiply, temp1, temp2);
+            }
+            if (sign === "/") {
+            result = operate(divide, temp1, temp2);
+            }
+            sign = this.value;
+            temp1 = result;
+            display.value = result;
+            val = "";
+          }    
+        }
+            
+      }
+      const buttons = Array.from(document.querySelectorAll("input"));
+      buttons.forEach(function(button) {
+        return button.addEventListener("click", func);
+      }); 
+
+
+    </script>
+  </body>
+</html>
